@@ -1,0 +1,39 @@
+{
+  "name": "flconf",
+  "version": "1.3.2",
+  "description": "Simple, pluggable, hierarchical configs",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint --cache ."
+  },
+  "keywords": [
+    "config",
+    "json",
+    "plugin",
+    "deep",
+    "merge",
+    "glob",
+    "match",
+    "environment"
+  ],
+  "author": "Jeremy Ruppel",
+  "license": "MIT",
+  "repository": {},
+  "devDependencies": {
+    "eslint": "~2.13.1",
+    "eslint-config-flickr": "~1.3.1",
+    "mocha": "~3.2.0",
+    "mockery": "~1.4.1",
+    "sinon": "~1.17.3"
+  },
+  "dependencies": {
+    "deap": "~1.0.0",
+    "glob": "~7.0.3",
+    "minimatch": "~3.0.0"
+  }
+}
