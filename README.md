@@ -1,5 +1,7 @@
 # flconf
 
+[![Build Status](https://travis-ci.org/flickr/flconf.svg?branch=master)](https://travis-ci.org/flickr/flconf)
+
 > Simple, pluggable, hierarchical configs
 
 ## install
