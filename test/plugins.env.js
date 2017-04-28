@@ -7,31 +7,45 @@ var assert = require('assert');
 
 describe('plugins/env', function () {
 
+	before(function () {
+		// define some fake environment variables
+		process.env.FOO = 'foo';
+		process.env.BAR = 'bar';
+	});
+
   it('is available on a config instance', function () {
     assert.equal(typeof config(__dirname).env, 'function');
   });
 
   it('does nothing for non-string values', function () {
-    assert.deepEqual(JSON.parse('{"pwd":23}', plugin), {
-      pwd: 23
+    assert.deepEqual(JSON.parse('{"foo":23}', plugin), {
+      foo: 23
     });
   });
 
   it('replaces placeholders with environment variable values', function () {
-    assert.deepEqual(JSON.parse('{"pwd":"${PWD}"}', plugin), {
-      pwd: process.env.PWD
+    assert.deepEqual(JSON.parse('{"foo":"${FOO}"}', plugin), {
+      foo: process.env.FOO
     });
   });
 
   it('replaces placeholders in the middle of strings', function () {
-    assert.deepEqual(JSON.parse('{"pwd":"omg ${PWD} yay"}', plugin), {
-      pwd: 'omg ' + process.env.PWD + ' yay'
+    assert.deepEqual(JSON.parse('{"foo":"omg ${FOO} yay"}', plugin), {
+      foo: 'omg ' + process.env.FOO + ' yay'
     });
   });
 
   it('replaces multiple placeholders', function () {
-    assert.deepEqual(JSON.parse('{"PS1":"${PWD} (${LOGNAME})"}', plugin), {
-      PS1: process.env.PWD + ' (' + process.env.LOGNAME + ')'
+    assert.deepEqual(JSON.parse('{"foo":"${FOO} (${BAR})"}', plugin), {
+      foo: process.env.FOO + ' (' + process.env.BAR + ')'
+    });
+  });
+
+  it('throws if a placeholder is not defined in this environment', function () {
+    assert.throws(function () {
+      JSON.parse('{"foo":"${BOOM}"}', plugin);
+    }, function (err) {
+      return err.name === 'ReferenceError' && err.message === 'flconf: process.env.BOOM is undefined';
     });
   });
 
