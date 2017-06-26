@@ -33,6 +33,7 @@ Config.prototype = {};
  */
 
 Config.prototype.env = require('./lib/env');
+Config.prototype.ms = require('./lib/ms');
 
 /**
  * Load and return the compiled config.

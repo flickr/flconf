@@ -84,6 +84,28 @@ Will load as:
 }
 ```
 
+### config.ms
+
+``` js
+config.use(config.ms);
+```
+
+Replaces ms-style time strings with their value in milliseconds.
+
+``` json
+{
+  "maxAge": "1 day"
+}
+```
+
+Will load as:
+
+``` json
+{
+  "maxAge": 86400000
+}
+```
+
 ## license
 
 This software is free to use under the MIT license. See the [LICENSE][] file for license text and copyright information.
