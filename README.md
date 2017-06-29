@@ -106,6 +106,40 @@ Will load as:
 }
 ```
 
+### config.json5
+
+``` js
+// note that you need to load this plugin
+config.use(config.json5.load());
+```
+
+Allows the usage of json5 syntax in your config files. The JSON5 plugin will not obstruct the usage of other flconf plugins.
+
+``` js
+{
+  // comments are totally fine!
+  bool: true,
+  number: 100,
+  string: 'Human Readable JSON',
+  object: {},
+  array: [],
+  null: null
+}
+```
+
+Will load as:
+
+``` js
+{
+  bool: true,
+  number: 100,
+  string: 'Human Readable JSON',
+  object: {},
+  array: [],
+  null: null
+}
+```
+
 ## license
 
 This software is free to use under the MIT license. See the [LICENSE][] file for license text and copyright information.

@@ -34,6 +34,7 @@ Config.prototype = {};
 
 Config.prototype.env = require('./lib/env');
 Config.prototype.ms = require('./lib/ms');
+Config.prototype.json5 = require('./lib/json5');
 
 /**
  * Load and return the compiled config.
