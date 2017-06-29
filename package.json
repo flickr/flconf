@@ -32,6 +32,7 @@
   "dependencies": {
     "deap": "~1.0.0",
     "glob": "~7.0.3",
+    "json5": "^0.5.1",
     "minimatch": "~3.0.0",
     "ms": "^2.0.0"
   }
