@@ -36,6 +36,25 @@ Config.prototype.env = require('./lib/env');
 Config.prototype.ms = require('./lib/ms');
 
 /**
+ * Define the method used to parse config files.
+ * You may override this method with another function
+ * that accepts source text and a reviver function
+ * with the same signature as JSON.parse expects.
+ * @param {String} text
+ * @param {Function} reviver
+ * @type {Function}
+ */
+
+Config.prototype.parse = JSON.parse;
+
+/**
+ * Define the glob pattern used for finding config files.
+ * @type {String}
+ */
+
+Config.prototype.pattern = '**/*.json';
+
+/**
  * Load and return the compiled config.
  * @returns {Object}
  */
@@ -66,7 +85,7 @@ Config.prototype.use = function (foo) {
 
 Config.prototype.files = function () {
   var array = [];
-  var files = glob.sync('**/*.json', {
+  var files = glob.sync(this.pattern, {
     cwd: this.dirname
   });
 
@@ -99,7 +118,7 @@ Config.prototype.process = function (files) {
 
   for (i = 0; i < files.length; i++) {
     source = fs.readFileSync(path.join(this.dirname, files[i]), 'utf8');
-    config = JSON.parse(source, this.reviver());
+    config = this.parse(source, this.reviver());
 
     extend(obj, config);
   }
