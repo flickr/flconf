@@ -8,7 +8,7 @@
     "index.js"
   ],
   "scripts": {
-    "test": "mocha",
+    "test": "nyc mocha",
     "lint": "eslint --cache ."
   },
   "keywords": [
@@ -27,7 +27,8 @@
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-flickr": "^2.0.1",
-    "mocha": "^7.1.2"
+    "mocha": "^7.1.2",
+    "nyc": "^15.0.1"
   },
   "dependencies": {
     "deap": "~1.0.0",
